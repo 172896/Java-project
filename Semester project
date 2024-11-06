@@ -15,7 +15,7 @@ public class Strathmore {
         int[][] grades = new int[10][5];  // Each student has grades in 5 subjects
 
         // Registering 10 students
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println("Enter name for student: ");
             names[i] = scanner.nextLine();
 
@@ -38,7 +38,7 @@ public class Strathmore {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         System.out.println("Report Date: " + date);
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println("\nStudent:");
             System.out.println("Name: " + names[i]);
             System.out.println("ID: " + ids[i]);
