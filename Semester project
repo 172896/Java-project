@@ -1,0 +1,90 @@
+package strathmore;
+
+import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Strathmore {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Arrays to store student details
+        String[] names = new String[10];
+        int[] ids = new int[10];
+        int[][] grades = new int[10][5];  // Each student has grades in 5 subjects
+
+        // Registering 10 students
+        for (int i = 0; i < 1; i++) {
+            System.out.println("Enter name for student: ");
+            names[i] = scanner.nextLine();
+
+            System.out.println("Enter ID for student: ");
+            ids[i] = scanner.nextInt();
+
+            System.out.println("Enter grades for 5 subjects for " + names[i] + ":");
+            for (int j = 0; j < 5; j++) {
+                System.out.print("Grade for subject " + (j + 1) + ": ");
+                grades[i][j] = scanner.nextInt();
+            }
+
+            scanner.nextLine();  // Consume newline left-over
+        }
+
+        // Displaying student information, grades, average, recommendation, and date
+        System.out.println("\n--- Student Information and Grades Report ---");
+
+        // Get the current date
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        System.out.println("Report Date: " + date);
+
+        for (int i = 0; i < 1; i++) {
+            System.out.println("\nStudent:");
+            System.out.println("Name: " + names[i]);
+            System.out.println("ID: " + ids[i]);
+
+            // Displaying grades
+            System.out.println("Grades:");
+            int totalGrades = 0;
+            for (int j = 0; j < 5; j++) {
+                System.out.println("Subject " + (j + 1) + ": " + grades[i][j]);
+                totalGrades += grades[i][j];
+            }
+
+            // Calculating average
+            double average = totalGrades / 5.0;
+            System.out.println("Average Score: " + average);
+
+            // Displaying grade based on average
+            System.out.println("Grade: " + getGrade(average));
+
+            // Recommendation based on the average score
+            String recommendation;
+            if (average >= 80) {
+                recommendation = "Excellent";
+            } else if (average >= 60) {
+                recommendation = "Good";
+            } else if (average >= 40) {
+                recommendation = "Average";
+            } else {
+                recommendation = "Poor";
+            }
+            System.out.println("Recommendation: " + recommendation);
+        }
+
+        scanner.close();
+    }
+
+    // Method to determine grade based on average score
+    private static String getGrade(double average) {
+        if (average >= 80) {
+            return "A";
+        } else if (average >= 60) {
+            return "B";
+        } else if (average >= 40) {
+            return "C";
+        } else {
+            return "D";
+        }
+    }
+}
