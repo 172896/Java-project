@@ -14,12 +14,22 @@ public class Strathmore {
         int[] ids = new int[10];
         int[][] grades = new int[10][5];  // Each student has grades in 5 subjects
 
-        // Registering 10 students
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Enter name for student: ");
-            names[i] = scanner.nextLine();
+        System.out.print("How many students do you want to enter (up to 10)? Type 'exit' anytime to finish early: ");
+        int studentCount = 0;
 
-            System.out.println("Enter ID for student: ");
+        // Loop for entering student details
+        for (int i = 0; i < 10; i++) {
+            System.out.println("\nEnter details for student" + (i + 1) + ":");
+            System.out.print("Enter name for student (or type 'exit' to stop): ");
+            String input = scanner.nextLine();
+            
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Exiting student registration early.");
+                break;
+            }
+            names[i] = input;
+
+            System.out.print("Enter ID for student: ");
             ids[i] = scanner.nextInt();
 
             System.out.println("Enter grades for 5 subjects for " + names[i] + ":");
@@ -28,7 +38,9 @@ public class Strathmore {
                 grades[i][j] = scanner.nextInt();
             }
 
-            scanner.nextLine();  // Consume newline left-over
+            scanner.nextLine(); 
+
+            studentCount++;  // Keep track of the number of students entered
         }
 
         // Displaying student information, grades, average, recommendation, and date
@@ -38,8 +50,8 @@ public class Strathmore {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         System.out.println("Report Date: " + date);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println("\nStudent:");
+        for (int i = 0; i < studentCount; i++) {
+            System.out.println("\nStudent " + (i + 1) + ":");
             System.out.println("Name: " + names[i]);
             System.out.println("ID: " + ids[i]);
 
@@ -60,7 +72,7 @@ public class Strathmore {
 
             // Recommendation based on the average score
             String recommendation;
-            if (average >= 80) {
+            if (average >= 70) {
                 recommendation = "Excellent";
             } else if (average >= 60) {
                 recommendation = "Good";
@@ -77,7 +89,7 @@ public class Strathmore {
 
     // Method to determine grade based on average score
     private static String getGrade(double average) {
-        if (average >= 80) {
+        if (average >= 70) {
             return "A";
         } else if (average >= 60) {
             return "B";
